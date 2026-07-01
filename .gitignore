@@ -1,0 +1,108 @@
+# =====================================================
+# Converse AI Platform — .gitignore
+# =====================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Docker
+docker-compose.override.yml
+
+# PostgreSQL
+*.sql.bak
+
+# Redis
+dump.rdb
+
+# Logs
+logs/
+*.log
+
+# Testing
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Frontend
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Keys and secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+service-account*.json
+credentials*.json
+
+# Alembic
+alembic/versions/__pycache__/
+
+# MinIO / S3
+.minio.sys/
+
+# Grafana
+grafana-data/
+
+# Prometheus
+prometheus-data/
+
+# Compiled Protocol Buffers
+*_pb2.py
+*_pb2_grpc.py
+*_pb2.pyi

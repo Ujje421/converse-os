@@ -1,0 +1,111 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "converse-shared"
+version = "0.1.0"
+description = "Shared kernel for the Converse AI Platform — DDD building blocks, infrastructure, security, and observability"
+readme = "README.md"
+license = { text = "Proprietary" }
+requires-python = ">=3.13"
+authors = [{ name = "Converse AI Team" }]
+
+dependencies = [
+    # Web framework
+    "fastapi>=0.115.0,<1.0",
+    "uvicorn[standard]>=0.32.0,<1.0",
+    "httpx>=0.28.0,<1.0",
+
+    # Database
+    "sqlalchemy[asyncio]>=2.0.36,<3.0",
+    "asyncpg>=0.30.0,<1.0",
+    "alembic>=1.14.0,<2.0",
+    "pgvector>=0.3.6,<1.0",
+
+    # Cache
+    "redis[hiredis]>=5.2.0,<6.0",
+
+    # Messaging
+    "confluent-kafka>=2.6.0,<3.0",
+    "aiokafka>=0.12.0,<1.0",
+
+    # Validation & Serialization
+    "pydantic>=2.10.0,<3.0",
+    "pydantic-settings>=2.7.0,<3.0",
+
+    # Security
+    "pyjwt[crypto]>=2.10.0,<3.0",
+    "passlib[bcrypt]>=1.7.4,<2.0",
+    "bcrypt>=4.2.0,<5.0",
+    "cryptography>=44.0.0,<45.0",
+
+    # Observability
+    "structlog>=24.4.0,<25.0",
+    "opentelemetry-api>=1.29.0,<2.0",
+    "opentelemetry-sdk>=1.29.0,<2.0",
+    "opentelemetry-exporter-otlp>=1.29.0,<2.0",
+    "opentelemetry-instrumentation-fastapi>=0.50b0",
+    "opentelemetry-instrumentation-sqlalchemy>=0.50b0",
+    "opentelemetry-instrumentation-redis>=0.50b0",
+    "opentelemetry-instrumentation-httpx>=0.50b0",
+    "prometheus-client>=0.21.0,<1.0",
+
+    # Utilities
+    "python-multipart>=0.0.18",
+    "orjson>=3.10.0,<4.0",
+    "python-dateutil>=2.9.0,<3.0",
+    "tenacity>=9.0.0,<10.0",
+
+    # Task queue
+    "celery[redis]>=5.4.0,<6.0",
+
+    # Object storage
+    "boto3>=1.35.0,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0,<9.0",
+    "pytest-asyncio>=0.24.0,<1.0",
+    "pytest-cov>=6.0.0,<7.0",
+    "pytest-mock>=3.14.0,<4.0",
+    "httpx>=0.28.0",
+    "factory-boy>=3.3.0,<4.0",
+    "faker>=33.0.0,<34.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0",
+    "pre-commit>=4.0.0",
+    "testcontainers[postgres,redis,kafka]>=4.8.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/converse_shared"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --strict-markers --cov=converse_shared --cov-report=term-missing"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests requiring external services",
+    "e2e: End-to-end tests",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "DTZ", "T20", "ICN", "PIE", "PT", "RSE", "RET", "SLF", "SIM", "TID", "TCH", "ARG", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "PERF", "RUF"]
+ignore = ["S101", "TRY003", "PLR0913"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["converse_shared"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
