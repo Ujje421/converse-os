@@ -6,6 +6,9 @@ An Enterprise-grade Conversational AI Platform enabling multi-tenant agent manag
 
 Converse AI is a microservices platform connected via HTTP APIs and asynchronous Kafka event streams. It employs CQRS patterns, Unit of Work, and Domain-Driven Design (DDD).
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/feff9abb-7ac6-4fc5-a393-33f990f72972" />
+
+
 ### Core Components
 
 1. **API Gateway**: Reverse proxy handling routing, rate limiting, and centralized auth validation.
