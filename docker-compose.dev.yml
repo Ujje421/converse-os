@@ -1,0 +1,35 @@
+version: '3.8'
+
+# Dev override for docker-compose.yml
+# Start with: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+services:
+  # Additional helpful dev tools
+  
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      REDIS_HOSTS: "local:redis:6379:${REDIS_PASSWORD:-redis_secret_change_me}"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8082:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    depends_on:
+      - kafka
+      - zookeeper
