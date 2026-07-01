@@ -1,0 +1,34 @@
+[project]
+name = "converse-ai-platform"
+version = "0.1.0"
+description = "Converse AI Platform Workspace"
+requires-python = ">=3.13"
+dependencies = [
+    "converse-shared",
+    "auth-service",
+    "user-service",
+    "org-service",
+    "agent-service",
+    "audit-service",
+    "api-gateway"
+]
+
+[tool.uv.workspace]
+members = [
+    "packages/shared-kernel",
+    "services/auth-service",
+    "services/user-service",
+    "services/org-service",
+    "services/agent-service",
+    "services/audit-service",
+    "services/api-gateway"
+]
+
+[tool.uv.sources]
+converse-shared = { workspace = true }
+auth-service = { workspace = true }
+user-service = { workspace = true }
+org-service = { workspace = true }
+agent-service = { workspace = true }
+audit-service = { workspace = true }
+api-gateway = { workspace = true }
