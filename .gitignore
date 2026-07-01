@@ -1,6 +1,7 @@
 # =====================================================
 # Converse AI Platform — .gitignore
 # =====================================================
+/implementation-plan.md
 
 # Python
 __pycache__/
